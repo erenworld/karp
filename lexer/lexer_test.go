@@ -3,7 +3,7 @@ package lexer
 import (
 	"testing"
 
-    "github.com/erenworld/karp/token"
+	"github.com/erenworld/karp/token"
 )
 
 func TestNextToken(t *testing.T) {
@@ -14,11 +14,14 @@ func TestNextToken(t *testing.T) {
 	let add = fn(x, y) { x + y; };
 	
 	let result = add(five, ten);
+
+	!-/*5;
+	5 < 10 > 5;
 	`
 
 	tests := []struct {
-		expectedType		token.TokenType
-		expectedLiteral		string
+		expectedType    token.TokenType
+		expectedLiteral string
 	}{
 		{token.LET, "let"},
 		{token.IDENT, "five"},
@@ -56,8 +59,26 @@ func TestNextToken(t *testing.T) {
 		{token.IDENT, "ten"},
 		{token.RPAREN, ")"},
 		{token.SEMICOLON, ";"},
+	
+		// Second part
+		{token.BANG, "!"},
+		{token.MINUS, "-"},
+		{token.SLASH, "/"},
+		{token.ASTERISK, "*"},
+		{token.INT, "5"},
+		{token.SEMICOLON, ";"},
+	
+		{token.INT, "5"},
+		{token.LT, "<"},
+		{token.INT, "10"},
+		{token.GT, ">"},
+		{token.INT, "5"},
+		{token.SEMICOLON, ";"},
+	
+		// Finally EOF
 		{token.EOF, ""},
 	}
+	
 
 	l := New(input)
 

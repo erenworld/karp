@@ -1,5 +1,7 @@
 # karp
 
+file:///Users/erenturkoglu/Documents/writing%20an%20INTERPRETER%20in%20go.pdf - page 22
+
 Interpreter for the Monkey programming language
 
 Every interpreter is built to interpret a specific programming language. That’s how you “implement” a programming language. Without a compiler or an interpreter a programming language
