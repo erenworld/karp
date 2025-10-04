@@ -16,15 +16,18 @@ const (
 	INT		= "INT"
 
 	// Operators
-	ASSIGN	= "="
-	PLUS	= "+"
-	MINUS	= "-"
-	BANG = "!"
-	ASTERISK = "*"
-	SLASH = "/"
-	LT = "<"
-	GT = ">"
+	ASSIGN		= "="
+	PLUS		= "+"
+	MINUS		= "-"
+	BANG 		= "!"
+	ASTERISK 	= "*"
+	SLASH 		= "/"
+	LT 			= "<"
+	GT 			= ">"
 
+	EQ 		= "=="
+	NOT_EQ 	= "!="
+ 
 	// Delimiters
 	COMMA		= ","
 	SEMICOLON	= ";"
