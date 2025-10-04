@@ -10,6 +10,8 @@ is nothing more than an idea or a specification.
 We’re going to parse and evaluate our own language called **Monkey**. It’s a language specifically
 designed for this book.
 
+* REPL
+
 Expressed as a list of features, Monkey has the following:
 * C-like syntax
 * variable bindings
