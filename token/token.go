@@ -4,20 +4,22 @@ type TokenType string
 
 type Token struct {
 	Type 		TokenType
-	Litteral 	string
+	Literal 	string
 }
 
 const (
 	ILLEGAL = "ILLEGAL"
 	EOF 	= "EOF"
 
-	// Identifiers + litterals
+	// Identifiers + literals
 	IDENT 	= "IDENT" 
 	INT		= "INT"
 
 	// Operators
 	ASSIGN	= "="
 	PLUS	= "+"
+	MUL		= "*"
+	SUB		= "-"
 
 	// Delimiters
 	COMMA		= ","
