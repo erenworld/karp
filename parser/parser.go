@@ -1,26 +1,37 @@
 package parser
 
 import (
-	"github.com/erenworld/karp/token"
+	"fmt"
+
 	"github.com/erenworld/karp/ast"
 	"github.com/erenworld/karp/lexer"
+	"github.com/erenworld/karp/token"
 ) 
 
 type Parser struct {
 	l *lexer.Lexer
+
+	errors		[]string
 
 	curToken 	token.Token
 	peekToken	token.Token
 }
 
 func New(l *lexer.Lexer) *Parser {
-	p := &Parser{l: l}
+	p := &Parser{
+		l: l, 
+		errors: []string{},
+	}
 
 	// Read two tokens, so curToken and peekToken are both set
 	p.NextToken()
 	p.NextToken()
 
 	return p
+}
+
+func (p *Parser) Errors() []string {
+	return p.errors
 }
 
 func (p *Parser) NextToken() {
@@ -82,6 +93,15 @@ func (p *Parser) peekTokenIs(t token.TokenType) bool {
 	return p.peekToken.Type == t
 }
 
+func (p *Parser) peekError(t token.TokenType) {
+	msg := fmt.Sprintf("expected next token to be %s, got %s instead", 
+		t, p.peekToken.Type)
+	p.errors = append(p.errors, msg)
+}
+
+// Assertion function. 
+// The purpose is to enforce the correctness of the order of tokens 
+// by checking the type of the next token
 func (p *Parser) expectPeek(t token.TokenType) bool {
 	if p.peekTokenIs(t) {
 		p.NextToken()
