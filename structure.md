@@ -1,0 +1,3 @@
+```bash
+return <expression>
+```
