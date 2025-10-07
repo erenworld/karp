@@ -3,10 +3,15 @@ package ast
 // Recursive descent parser. And in particular, it’s a “top down operator precedence” parser
 // sometimes called “Pratt parser”, after its inventor Vaughan Pratt
 
-import "karp/token"
+import (
+	"bytes"
+
+	"karp/token"
+) 
 
 type Node interface {
-	TokenLiteral() string
+	TokenLiteral() 	string
+	String()		string
 }
 
 type LetStatement struct {
@@ -50,6 +55,16 @@ func (p *Program) TokenLiteral() string {
 	} else {
 		return ""
 	}
+}
+
+func (p *Program) String() string {
+	var out bytes.Buffer
+
+	for _, s := range p.Statements {
+		out.WriteString(s.String())
+	}
+
+	return out.String()
 }
 
 func (i *Identifier) expressionNode() {}
