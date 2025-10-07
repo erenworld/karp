@@ -1,16 +1,16 @@
 # karp
 
-Interpreter for the Monkey programming language
+Interpreter for the Karp programming language
 
 Every interpreter is built to interpret a specific programming language. That’s how you “implement” a programming language. Without a compiler or an interpreter a programming language
 is nothing more than an idea or a specification.
 
-We’re going to parse and evaluate our own language called **Monkey**. It’s a language specifically
+We’re going to parse and evaluate our own language called **Karp**. It’s a language specifically
 designed for this book.
 
 * REPL
 
-Expressed as a list of features, Monkey has the following:
+Expressed as a list of features, Karp has the following:
 * C-like syntax
 * variable bindings
 * integers and booleans
@@ -22,8 +22,8 @@ Expressed as a list of features, Monkey has the following:
 * an array data structure
 * a hash data structure
 
-### What Monkey looks like?
-Why is it called “Monkey”? Well, because monkeys are magnificent, elegant,
+### What Karp looks like?
+Why is it called “Karp”? Well, because karps are magnificent, elegant,
 fascinating and funny creatures. Exactly like our interpreter
 
 ### Interpreter vs compiler
