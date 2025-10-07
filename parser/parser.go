@@ -9,12 +9,12 @@ import (
 ) 
 
 type Parser struct {
-	l *lexer.Lexer
-
-	errors		[]string
-
-	curToken 	token.Token
-	peekToken	token.Token
+	l 				*lexer.Lexer
+	errors			[]string
+	curToken 		token.Token
+	peekToken		token.Token
+	prefixParseFn 	map[token.TokenType]prefixParseFn
+	infixParseFn 	map[token.TokenType]infixParseFn
 }
 
 type (
@@ -131,4 +131,12 @@ func (p *Parser) expectPeek(t token.TokenType) bool {
 		p.peekError(t)
 		return false
 	}
+}
+
+func (p *Parser) registerPrefix(tokenType token.TokenType, fn prefixParseFn) {
+	p.prefixParseFn[tokenType] = fn
+}
+
+func (p *Parser) registerInfix(tokenType token.TokenType, fn infixParseFn) {
+	p.infixParseFn[tokenType] = fn
 }
