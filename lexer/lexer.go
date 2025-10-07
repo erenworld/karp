@@ -1,6 +1,6 @@
 package lexer
 
-import "github.com/erenworld/karp/token"
+import "karp/token"
 
 type Lexer struct {
 	input			string

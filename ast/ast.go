@@ -3,7 +3,7 @@ package ast
 // Recursive descent parser. And in particular, it’s a “top down operator precedence” parser
 // sometimes called “Pratt parser”, after its inventor Vaughan Pratt
 
-import "github.com/erenworld/karp/token"
+import "karp/token"
 
 type Node interface {
 	TokenLiteral() string

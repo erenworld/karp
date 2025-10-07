@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/user"
 
-	"github.com/erenworld/karp/repl"
+	"karp/repl"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package lexer
 import (
 	"testing"
 
-	"github.com/erenworld/karp/token"
+	"karp/token"
 )
 
 func TestNextToken(t *testing.T) {

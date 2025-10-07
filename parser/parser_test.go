@@ -2,8 +2,8 @@ package parser
 
 import (
 	"testing"
-	"github.com/erenworld/karp/lexer"
-	"github.com/erenworld/karp/ast"
+	"karp/lexer"
+	"karp/ast"
 )
 
 func TestLetStatements(t *testing.T) {

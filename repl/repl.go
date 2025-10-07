@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/erenworld/karp/token"
-	"github.com/erenworld/karp/lexer"
+	"karp/token"
+	"karp/lexer"
 )
 
 const PROMPT = ">> "

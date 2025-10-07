@@ -3,9 +3,9 @@ package parser
 import (
 	"fmt"
 
-	"github.com/erenworld/karp/ast"
-	"github.com/erenworld/karp/lexer"
-	"github.com/erenworld/karp/token"
+	"karp/ast"
+	"karp/lexer"
+	"karp/token"
 ) 
 
 type Parser struct {

@@ -1,3 +1,3 @@
-module github.com/erenworld/karp
+module karp
 
 go 1.24.2
