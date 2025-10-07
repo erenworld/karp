@@ -25,6 +25,10 @@ type Expression interface {
 	expressionNode()
 }
 
+type ExpressionStatement struct {
+	Token token.Token
+	Expression Expression
+}
 
 type Identifier struct {
 	Token token.Token // the token.IDENT token
@@ -56,3 +60,7 @@ func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
 
 func (rs *ReturnStatement) statementNode() {}
 func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
+
+func (es *ExpressionStatement) statementNode() {}
+func (es *ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
+
