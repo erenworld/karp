@@ -1,9 +1,9 @@
 package parser
 
 import (
-	"testing"
-	"karp/lexer"
 	"karp/ast"
+	"karp/lexer"
+	"testing"
 )
 
 func TestLetStatements(t *testing.T) {
@@ -164,7 +164,7 @@ func TestIntegerLiteralExpression(t *testing.T) {
 	}
 
 	if literal.Value != 5 {
-		t.Errorf("literal.Value not %s. got=%s", "foobar", literal.Value)
+		t.Errorf("literal.Value not %s. got=%d", "foobar", literal.Value)
 	}
 
 	if literal.TokenLiteral() != "5" {
