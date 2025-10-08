@@ -39,6 +39,9 @@ func New(l *lexer.Lexer) *Parser {
 		errors: []string{},
 	}
 
+	p.prefixParseFn = make(map[token.TokenType]prefixParseFn)
+	p.registerPrefix(token.IDENT, p.parseIdentifier)
+
 	// Read two tokens, so curToken and peekToken are both set
 	p.NextToken()
 	p.NextToken()
@@ -53,6 +56,10 @@ func (p *Parser) Errors() []string {
 func (p *Parser) NextToken() {
 	p.curToken = p.peekToken
 	p.peekToken = p.l.NextToken()
+}
+
+func (p *Parser) parseIdentifier() ast.Expression {
+	return &ast.Identifier{Token: p.curToken, Value: p.curToken.Literal}
 }
 
 func (p *Parser) ParseProgram() *ast.Program {
@@ -82,7 +89,7 @@ func (p *Parser) parseStatement() ast.Statement {
 }
 
 func (p *Parser) parseExpression(precedence int) ast.Expression {
-	prefix := p.prefixParseFns[p.curToken.Type]
+	prefix := p.prefixParseFn[p.curToken.Type]
 	if prefix == nil {
 		return nil
 	}
