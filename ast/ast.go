@@ -128,5 +128,4 @@ func (es *ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
 
 func (il *IntegerLiteral) expressionNode() {}
 func (il *IntegerLiteral) TokenLiteral() string { return il.Token.Literal }
-func (il *IntegerLiteral) String()
 
