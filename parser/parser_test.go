@@ -173,7 +173,7 @@ func TestIntegerLiteralExpression(t *testing.T) {
 	}
 }
 
-func TestIntegerLiteral(t *testing.T, il ast.Expression, value int64) bool {
+func testIntegerLiteral(t *testing.T, il ast.Expression, value int64) bool {
 	integ, ok := il.(*ast.IntegerLiteral)
 	if !ok {
 		t.Errorf("il not an *ast.IntegerLiteral. got=%T", il)
@@ -226,12 +226,12 @@ func TestParsingPrefixExpressions(t *testing.T) {
 			t.Fatalf("stmt is not ast.PrefixExpression. got=%T", stmt.Expression)
 		}
 
-		if exp.Operator != tt.Operator {
+		if exp.Operator != tt.operator {
 			t.Fatalf("exp.Operator is not '%s'. got=%s",
 			tt.operator, exp.Operator)		
 		}
 
-		if !TestIntegerLiteral(t, exp.Right, tt.integerValue) {
+		if !testIntegerLiteral(t, exp.Right, tt.integerValue) {
 			return
 		}
 	}
