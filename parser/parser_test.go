@@ -407,7 +407,7 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 }
 
 // Generic helper 
-func TestIdentifier(t *testing.T, exp ast.Expression, value string) bool {
+func testIdentifier(t *testing.T, exp ast.Expression, value string) bool {
 	ident, ok := exp.(*ast.Identifier)
 	if !ok {
 		t.Errorf("exp not *ast.Identifier. got=%T", exp)
@@ -438,7 +438,7 @@ func testLiteralExpression(
 	case int64:
 		return testIntegerLiteral(t, exp, v)
 	case string:
-		return TestIdentifier(t, exp, v)
+		return testIdentifier(t, exp, v)
 	}
 	t.Errorf("type of exp not handled. got=%T", exp)
 	return false
@@ -467,6 +467,3 @@ func testInfixExpression(t *testing.T, exp ast.Expression, left interface{}, ope
 
 	return true
 }
-
-// testInfixExpression(t, stmt.Expression, 5, "+", 10)
-// testInfixExpression(t, stmt.Expression, "alice", "*", "bob")
