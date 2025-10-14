@@ -10,11 +10,16 @@
 // 	defer untrace(trace("parseIntegerLiteral"))
 //
 
-// func (p *Parser) parsePrefixExpression() ast.Expression {
-// 	defer untrace(trace("parsePrefixExpression"))
+//	func (p *Parser) parsePrefixExpression() ast.Expression {
+//		defer untrace(trace("parsePrefixExpression"))
 //
-// 	}
-// 	func (p *Parser) parseInfixExpression(left ast.Expression) ast.Expression {
-// 	defer untrace(trace("parseInfixExpression"))
+//		}
+//		func (p *Parser) parseInfixExpression(left ast.Expression) ast.Expression {
+//		defer untrace(trace("parseInfixExpression"))
 //
-// 	}
+//		}
+package parser
+
+func tracing() string {
+	return "tracing"
+}
