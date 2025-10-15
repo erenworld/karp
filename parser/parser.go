@@ -151,7 +151,7 @@ func (p *Parser) parseLetStatement() *ast.LetStatement {
 	}
 
 	// TODO: We're skipping the expressions until we
-	// encounter a semicolon
+	// TODO: encounter a semicolon
 	for !p.curTokenIs(token.SEMICOLON) {
 		p.NextToken()
 	}
