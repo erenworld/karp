@@ -75,6 +75,11 @@ type IfExpression struct {
 	Alternative	*BlockStatement
 }
 
+type BlockStatement struct {
+	Token token.Token // the { token
+	Statements []Statement
+}
+
 type Program struct {
 	Statements []Statement
 }
@@ -198,6 +203,18 @@ func (ie *IfExpression) String() string {
 	if ie.Alternative != nil {
 		out.WriteString("else ")
 		out.WriteString(ie.Alternative.String())
+	}
+
+	return out.String()
+}
+
+func (bs *BlockStatement) statementNode() {}
+func (bs *BlockStatement) TokenLiteral() string { return bs.Token.Literal }
+func (bs *BlockStatement) String() string {
+	var out bytes.Buffer
+
+	for _, s := range bs.Statements {
+		out.WriteString(s.String())
 	}
 
 	return out.String()
