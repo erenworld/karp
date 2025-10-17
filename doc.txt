@@ -1,0 +1,41 @@
+// The algorithm behind the parseExpression method and its combination of parsing functions
+// and precedences is fully described by Vaughan Pratt in his “Top Down Operator Precedence”
+// paper. But there are differences between his and our implementation
+
+// Suppose we’re parsing the following expression statement:
+// 1 + 2 + 3;
+
+// What we want is an AST that (serialized as a string) looks like this:
+// ((1 + 2) + 3)
+
+// parseExpressionStatement calls parseExpression(LOWEST). The p.curToken and p.peekToken are
+// the 1 and the first +:
+
+// 1 is p.curToken 
+// + is p.peekToken
+
+// The first thing parseExpression then does is to check whether there is a prefixParseFn associated
+// with the current p.curToken.Type, which is a token.INT. And, yes, there is: parseIntegerLiteral.
+// So it calls parseIntegerLiteral, which returns an *ast.IntegerLiteral. parseExpression assigns
+// this to leftExp.
+
+// Then comes the new for-loop in parseExpression. Its condition evaluates to true:
+// for !p.peekTokenIs(token.SEMICOLON) && precedence < p.peekPrecedence() {
+// [...]
+// }
+
+// parseExpression executes the body of the loop, which
+// looks like this:
+// 		infix := p.infixParseFns[p.peekToken.Type]
+// 		if infix == nil {
+// 			return leftExp
+// 		}
+// 		p.nextToken()
+// 		leftExp = infix(leftExp)
+
+
+// Now back in parseInfixExpression the return-value of parseExpression is assigned to the Right
+// field of the newly constructed *ast.InfixExpression. 
+
+// ast.infixExpression -> ast.integerIntegral -> 1
+// ast.infixExpression -> ast.integerIntegral -> 2

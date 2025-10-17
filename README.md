@@ -8,7 +8,28 @@ is nothing more than an idea or a specification.
 We’re going to parse and evaluate our own language called **Karp**. It’s a language specifically
 designed for this book.
 
-* REPL
+In the Karp programming language everything besides let and return statements is an expression.
+
+Top Down Operator Precedence (or: Pratt Parsing)
+A crucial part of this idea is that each token type can have two parsing functions associated with it, depending
+on the token’s position - infix or prefix.
+
+A prefix operator is an operator “in front of” its operand. Example:
+--5
+
+Two prefix in Karp:  ! and -
+
+A postfix operator is an operator “after” its operand. Example:
+foobar++
+ 
+5 * 8
+The * operator sits in the infix position between the two integer literals 5 and 8. Infix operators
+appear in binary expressions -
+
+## Implementation of pratt parsing
+As we saw before, a program in Karp is a series of statements. Some are let statements, others return statements.
+We need to add a third type of statement to our AST: expression statements.
+
 
 Expressed as a list of features, Karp has the following:
 * C-like syntax
