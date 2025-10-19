@@ -35,3 +35,4 @@ func (b *Boolean) Type() ObjectType { return BOOLEAN_OBJ }
 
 func (n *Null) Inspect() string { return "null" }
 func (n *Null) Type() ObjectType { return NULL_OBJ }
+
