@@ -1,7 +1,6 @@
 package evaluator
 
 import (
-	"karp/ast"
 	"karp/lexer"
 	"karp/object"
 	"karp/parser"
