@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"karp/ast"
 	"karp/lexer"
+	"karp/object"
 	"testing"
 )
 
@@ -82,7 +83,7 @@ func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
 	return true
 }
 
-// TODOS: let vs return 
+// TODOS: let vs return add same test
 func TestReturnStatements(t *testing.T) {
 	input := `
 		return 6;
@@ -721,3 +722,37 @@ func TestCallExpressionParsing(t *testing.T) {
 	testInfixExpression(t, exp.Arguments[2], 4, "+", 5)
 }
 
+func TestBangOperator(t *testing.T) {
+	tests := []struct{
+		input		string
+		expected 	bool
+	}{
+		{"!true", false},
+		{"!false", true},
+		{"!5", false},
+		{"!!true", true},
+		{"!!false", false},
+		{"!!5", true},
+	}
+
+	for _, tt := range tests {
+		evaluated := testEval(tt.input)
+		testBooleanObject(t, evaluated, tt.expected)
+	}
+}
+
+func testBooleanObject(t *testing.T, obj object.Object, expected bool) bool {
+	result, ok := obj.(*object.Boolean)
+	if !ok {
+		t.Errorf("object is not Boolean. got=%T (%+v)", obj, obj)
+		return false 
+	}
+
+	if result.Value != expected {
+		t.Errorf("object has wrong value. got=%t, want=%t",
+		result.Value, expected)
+		return false
+	}
+
+	return true
+}
