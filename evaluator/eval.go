@@ -91,6 +91,14 @@ func evalIntegerInfixExpression(
 		return &object.Integer{Value: leftVal * rightVal}
 	case "/":
 		return &object.Integer{Value: leftVal / rightVal}
+	case "<":
+		return nativeBoolToBooleanObject(leftVal < rightVal)
+	case ">":
+		return nativeBoolToBooleanObject(rightVal < leftVal)
+	case "==":
+		return nativeBoolToBooleanObject(rightVal == leftVal)
+	case "!=": 
+		return nativeBoolToBooleanObject(rightVal != leftVal)
 	default:
 		return NULL
 	}
