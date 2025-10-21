@@ -133,3 +133,7 @@ func TestEvalComplexIntegerExpressions(t *testing.T) {
 		testIntegerObject(t, evaluated, tt.expected)
 	}
 }
+
+func TestIfElseExpression(t *testing.T) {
+	
+}
