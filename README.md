@@ -31,6 +31,16 @@ As we saw before, a program in Karp is a series of statements. Some are let stat
 We need to add a third type of statement to our AST: expression statements.
 
 
+here are the eight infix operators that karp supports:
+5 + 5;
+5 - 5;
+5 * 5;
+5 / 5;
+5 > 5;
+5 < 5;
+5 == 5;
+5 != 5;
+
 Expressed as a list of features, Karp has the following:
 * C-like syntax
 * variable bindings
