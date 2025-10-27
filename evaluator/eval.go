@@ -1,6 +1,7 @@
 package evaluator
 
 import (
+	"fmt"
 	"karp/ast"
 	"karp/object"
 )
@@ -100,7 +101,7 @@ func evalPrefixExpression(operator string, right object.Object) object.Object {
 	case "-":
 		return evalMinusPrefixExpression(right)
 	default:
-		return NULL
+		return newError("unknown operator: %s%s", operator, right.Type())
 	}
 }
 
@@ -177,4 +178,8 @@ func nativeBoolToBooleanObject(input bool) *object.Boolean {
 	}
 	
 	return FALSE
+}
+
+func newError(format string, a ...interface{}) *object.Error {
+	return &object.Error{Message: fmt.Sprintf(format, a...)}
 }
