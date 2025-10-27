@@ -110,11 +110,7 @@ func evalPrefixExpression(operator string, right object.Object) object.Object {
 		return newError("unknown operator: %s%s", operator, right.Type())
 	}
 }
-
-func evalInfixExpression(
-	operator string, 
-	left, right object.Object,
-) object.Object {
+func evalInfixExpression(operator string, left, right object.Object) object.Object {
 	switch {
 	case left.Type() == object.INTEGER_OBJ && right.Type() == object.INTEGER_OBJ:
 		return evalIntegerInfixExpression(operator, left, right)
@@ -123,10 +119,9 @@ func evalInfixExpression(
 	case operator == "!=":
 		return nativeBoolToBooleanObject(left != right)
 	case left.Type() != right.Type():
-		return newError("unknown operator: %s %s %s", left.Type(), operator, right.Type())
+		return newError("type mismatch: %s %s %s", left.Type(), operator, right.Type())
 	default:
-		return newError("unknown operator: %s %s %s",
-		left.Type(), operator, right.Type())
+		return newError("unknown operator: %s %s %s", left.Type(), operator, right.Type())
 	}
 }
 
@@ -191,4 +186,11 @@ func nativeBoolToBooleanObject(input bool) *object.Boolean {
 
 func newError(format string, a ...interface{}) *object.Error {
 	return &object.Error{Message: fmt.Sprintf(format, a...)}
+}
+
+func isError(obj object.Object) bool {
+	if obj != nil {
+		return obj.Type() == object.ERROR_OBJ
+	}
+	return false
 }
