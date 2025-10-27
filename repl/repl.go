@@ -5,15 +5,17 @@ import (
 	"fmt"
 	"io"
 
-	"karp/lexer"
-	"karp/parser"
 	"karp/evaluator"
+	"karp/lexer"
+	"karp/object"
+	"karp/parser"
 )
 
 const PROMPT = ">> "
 
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
+	env := object.NewEnvironment()
 
 	for {
 		fmt.Print(PROMPT)
@@ -32,11 +34,10 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		eval := evaluator.Eval(program)
+		eval := evaluator.Eval(program, env)
 		if eval != nil {
-
-		io.WriteString(out, eval.Inspect())
-		io.WriteString(out, "\n")
+			io.WriteString(out, eval.Inspect())
+			io.WriteString(out, "\n")
 		}
 	}
 }
