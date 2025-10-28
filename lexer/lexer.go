@@ -151,6 +151,9 @@ func (l *Lexer) readNumber() string {
 	return l.input[position:l.position]
 }
 
+// Calls readChar until it encounters either a closing double quote or the end of the input.
+// TODOS: make readString report an error instead of simply returning when it reaches the end of the input.
+// TODOS: add support for character escaping so that string literals like "hello \"world\"", "hello\n world" and "hello\t\t\tworld" work.
 func (l *Lexer) readString() string {
 	position := l.position + 1
 
