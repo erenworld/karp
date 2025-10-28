@@ -65,3 +65,14 @@ later be executed. That’s in contrast to compilers, which take source code and
 in another language that the underlying system can understand.
 
  The interpreter gives them meaning!
+
+> Notes on memory management
+The answer to that question is the heart of the confession I have to make: we’re reusing Go’s
+garbage collector as a garbage collector for our guest language. We do not need to write our
+own.
+
+Go’s garbage collector (GC) is the reason why we don’t run out of memory. It manages memory
+for us. Even when we call the counter function from above many, many times and thus add a
+lot more unused integer literals and object allocations, we won’t run out of memory. Because
+the GC keeps track of which object.Integer are still reachable by us and which are not. When
+it notices that an object is not reachable anymore it makes the object’s memory available again.
