@@ -39,6 +39,7 @@ const (
 
 	// Keyword
 	FUNCTION 	= "FUNCTION"
+	STRING		= "STRING"
 	LET 		= "LET"
 	TRUE 		= "TRUE"
 	FALSE 		= "FALSE"
