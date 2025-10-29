@@ -9,8 +9,10 @@ import (
 )
 
 type ObjectType string
+type BuiltinFunction func(args ...Object) Object
 
 const (
+	BUILTIN_OBJ			= "BUILTIN"
 	FUNCTION_OBJ		= "FUNCTION"
 	INTEGER_OBJ 		= "INTEGER"
 	BOOLEAN_OBJ 		= "BOOLEAN"
@@ -53,6 +55,10 @@ type ReturnValue struct {
 	Value Object
 }
 
+type Builtin struct {
+	Fn BuiltinFunction
+}
+
 func (i *Integer) Inspect() string { return fmt.Sprintf("%d", i.Value) }
 func (i *Integer) Type() ObjectType { return INTEGER_OBJ }
 
@@ -89,3 +95,6 @@ func (f *Function) Inspect() string {
 
 func (s *String) Type() ObjectType { return STRING_OBJ }
 func (s *String) Inspect() string { return s.Value } 
+
+func (b *Builtin) Type() ObjectType { return BUILTIN_OBJ }
+func (b *Builtin) Inspect() string { return "builtin function" }
