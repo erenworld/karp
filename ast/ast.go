@@ -1,8 +1,5 @@
 package ast
 
-// Recursive descent parser. And in particular, it’s a “top down operator precedence” parser
-// sometimes called “Pratt parser”, after its inventor Vaughan Pratt
-
 import (
 	"bytes"
 	"strings"
@@ -109,6 +106,11 @@ type IndexExpression struct {
 	Index	Expression
 }
 
+type hashLiteral struct {
+	Token token.Token // the { token
+	Pairs map[Expression]Expression
+}
+
 type Program struct {
 	Statements []Statement
 }
@@ -169,12 +171,9 @@ func (es *ExpressionStatement) String() string {
 	return ""
 }
 
-func (i *Identifier) String() string { return i.Value }
-
-func (il *IntegerLiteral) String() string { return il.Token.Literal }
-
 func (i *Identifier) expressionNode() {}
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
+func (i *Identifier) String() string { return i.Value }
 
 func (ls *LetStatement) statementNode() {}
 func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
@@ -187,6 +186,7 @@ func (es *ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
 
 func (il *IntegerLiteral) expressionNode() {}
 func (il *IntegerLiteral) TokenLiteral() string { return il.Token.Literal }
+func (il *IntegerLiteral) String() string { return il.Token.Literal }
 
 func (pe *PrefixExpression) expressionNode() {}
 func (pe *PrefixExpression) TokenLiteral() string { return pe.Token.Literal }
@@ -269,7 +269,6 @@ func (fl *FunctionLiteral) String() string {
 	return out.String()
 }
 
-
 func (ce *CallExpression) expressionNode() {}
 func (ce *CallExpression) TokenLiteral() string { return ce.Token.Literal }
 func (ce *CallExpression) String() string {
@@ -309,7 +308,6 @@ func (al *ArrayLiteral) String() string {
 	return out.String()
 }
 
-
 func (ie *IndexExpression) expressionNode() {}
 func (ie *IndexExpression) TokenLiteral() string { return ie.Token.Literal }
 func (ie *IndexExpression) String() string { 
@@ -325,3 +323,18 @@ func (ie *IndexExpression) String() string {
 	return out.String()
 }
 
+func (hl *hashLiteral) expressionNode() {}
+func (hl *hashLiteral) TokenLiteral() string { return hl.Token.Literal }
+func (hl *hashLiteral) String() string { 
+	var out bytes.Buffer
+
+	pairs := []string{}
+	for key, value := range hl.Pairs {
+		pairs = append(pairs, key.String()+":"+value.String())
+	}
+	out.WriteString("{")
+	out.WriteString(strings.Join(pairs, ", "))
+	out.WriteString("}")
+
+	return out.String()
+}
