@@ -19,8 +19,13 @@ const (
 	STRING_OBJ			= "STRING"
 	NULL_OBJ			= "NULL"
 	RETURN_VALUE_OBJ 	= "RETURN_VALUE"
+	ARRAY_OBJ			= "ARRAY"
 	ERROR_OBJ			= "ERROR"
 )
+
+type Array struct {
+	Elements []Object
+}
 
 type Function struct {
 	Parameters 	[]*ast.Identifier
@@ -98,3 +103,19 @@ func (s *String) Inspect() string { return s.Value }
 
 func (b *Builtin) Type() ObjectType { return BUILTIN_OBJ }
 func (b *Builtin) Inspect() string { return "builtin function" }
+
+func (arr *Array) Type() ObjectType { return ARRAY_OBJ }
+func (arr *Array) Inspect() string {
+	var out bytes.Buffer
+
+	elements := []string{}
+	for _, e := range arr.Elements {
+		elements = append(elements, e.Inspect())
+	}
+
+	out.WriteString("[")
+	out.WriteString(strings.Join(elements, ", "))
+	out.WriteString("]")
+
+	return out.String()
+}
