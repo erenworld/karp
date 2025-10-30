@@ -21,6 +21,7 @@ const (
 	NULL_OBJ			= "NULL"
 	RETURN_VALUE_OBJ 	= "RETURN_VALUE"
 	ARRAY_OBJ			= "ARRAY"
+	HASH_OBJ			= "HASH"
 	ERROR_OBJ			= "ERROR"
 )
 
@@ -64,6 +65,15 @@ type ReturnValue struct {
 type HashKey struct {
 	Type  ObjectType
 	Value uint64
+}
+
+type HashPair struct {
+	Key 	Object
+	Value   Object
+}
+
+type Hash struct {
+	Pairs map[HashKey]HashPair
 }
 
 type Builtin struct {
@@ -148,3 +158,5 @@ func (s *String) HashKey() HashKey {
 
 	return HashKey{Type: s.Type(), Value: h.Sum64()}
 }
+
+func (h *Hash) Type() ObjectType { return HASH_OBJ }
