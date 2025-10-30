@@ -106,7 +106,7 @@ type IndexExpression struct {
 	Index	Expression
 }
 
-type hashLiteral struct {
+type HashLiteral struct {
 	Token token.Token // the { token
 	Pairs map[Expression]Expression
 }
@@ -323,9 +323,9 @@ func (ie *IndexExpression) String() string {
 	return out.String()
 }
 
-func (hl *hashLiteral) expressionNode() {}
-func (hl *hashLiteral) TokenLiteral() string { return hl.Token.Literal }
-func (hl *hashLiteral) String() string { 
+func (hl *HashLiteral) expressionNode() {}
+func (hl *HashLiteral) TokenLiteral() string { return hl.Token.Literal }
+func (hl *HashLiteral) String() string { 
 	var out bytes.Buffer
 
 	pairs := []string{}
