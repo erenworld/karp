@@ -392,6 +392,6 @@ func TestArrayLiteral(t *testing.T) {
 	}
 
 	testIntegerObject(t, result.Elements[0], 1)
-	testIntegerObject(t, result.Elements[0], 6)
-	testIntegerObject(t, result.Elements[0], 7)
+	testIntegerObject(t, result.Elements[1], 6)
+	testIntegerObject(t, result.Elements[2], 7)
 }
