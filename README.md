@@ -1,78 +1,63 @@
-# karp
+# 🐟 Karp
 
-Interpreter for the Karp programming language
+[![Go Version](https://img.shields.io/badge/Go-1.22%2B-blue)](https://go.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Dependabot Enabled](https://img.shields.io/badge/Dependabot-Active-brightgreen)](https://github.com/dependabot)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/karp/go.yml?branch=main)](https://github.com/yourusername/karp/actions)
 
-Every interpreter is built to interpret a specific programming language. That’s how you “implement” a programming language. Without a compiler or an interpreter a programming language
-is nothing more than an idea or a specification.
+---
 
-We’re going to parse and evaluate our own language called **Karp**. It’s a language specifically
-designed for this book.
+## 🧠 Overview
 
-In the Karp programming language everything besides let and return statements is an expression.
+**Karp** is an interpreter for the **Karp programming language**, implemented in **Go (Golang)**.
 
-Top Down Operator Precedence (or: Pratt Parsing)
-A crucial part of this idea is that each token type can have two parsing functions associated with it, depending
-on the token’s position - infix or prefix.
+Every interpreter is built to interpret a specific programming language — that’s how you *implement* a language.  
+Without a compiler or interpreter, a programming language is nothing more than an idea or a specification.
 
-A prefix operator is an operator “in front of” its operand. Example:
---5
+Karp is a small, expressive, C-like language built for learning and experimentation.  
+It is inspired by the book *["Writing an Interpreter in Go"](https://interpreterbook.com/)*.
 
-Two prefix in Karp:  ! and -
+---
 
-A postfix operator is an operator “after” its operand. Example:
-foobar++
- 
-5 * 8
-The * operator sits in the infix position between the two integer literals 5 and 8. Infix operators
-appear in binary expressions -
+## ⚙️ Pratt Parsing (Top-Down Operator Precedence)
 
-## Implementation of pratt parsing
-As we saw before, a program in Karp is a series of statements. Some are let statements, others return statements.
-We need to add a third type of statement to our AST: expression statements.
+Karp uses **Pratt Parsing** — a parsing technique that associates parsing functions with tokens, depending on their position (prefix, infix, or postfix).
 
+- **Prefix operators** — appear *before* their operand:
+  ```karp
+  -5
+  !true
 
-here are the eight infix operators that karp supports:
-5 + 5;
-5 - 5;
-5 * 5;
-5 / 5;
-5 > 5;
-5 < 5;
-5 == 5;
-5 != 5;
+- **Supported infix operators**
+| Operator | Description    | Example  |
+| -------- | -------------- | -------- |
+| `+`      | Addition       | `5 + 5`  |
+| `-`      | Subtraction    | `5 - 5`  |
+| `*`      | Multiplication | `5 * 5`  |
+| `/`      | Division       | `5 / 5`  |
+| `>`      | Greater than   | `5 > 5`  |
+| `<`      | Less than      | `5 < 5`  |
+| `==`     | Equality       | `5 == 5` |
+| `!=`     | Inequality     | `5 != 5` |
 
-Expressed as a list of features, Karp has the following:
-* C-like syntax
-* variable bindings
-* integers and booleans
-* arithmetic expressions
-* built-in functions
-* first-class and higher-order functions
-* closures
-* a string data structure
-* an array data structure
-* a hash data structure
+## Example code
 
-### What Karp looks like?
-Why is it called “Karp”? Well, because karps are magnificent, elegant,
-fascinating and funny creatures. Exactly like our interpreter
+```js
+let add = fn(x, y) { x + y };
+add(2, 3);          // => 5
 
-### Interpreter vs compiler
+let makeAdder = fn(x) {
+  fn(y) { x + y };
+};
 
-What can be said is that the one fundamental attribute they all share is that they
-take source code and evaluate it without producing some visible, intermediate result that can
-later be executed. That’s in contrast to compilers, which take source code and produce output
-in another language that the underlying system can understand.
+let addTwo = makeAdder(2);
+addTwo(5);          // => 7
 
- The interpreter gives them meaning!
+let result = !false;  // => true
 
-> Notes on memory management
-The answer to that question is the heart of the confession I have to make: we’re reusing Go’s
-garbage collector as a garbage collector for our guest language. We do not need to write our
-own.
+let nums = [1, 2, 3, 4];
+len(nums);            // => 4
 
-Go’s garbage collector (GC) is the reason why we don’t run out of memory. It manages memory
-for us. Even when we call the counter function from above many, many times and thus add a
-lot more unused integer literals and object allocations, we won’t run out of memory. Because
-the GC keeps track of which object.Integer are still reachable by us and which are not. When
-it notices that an object is not reachable anymore it makes the object’s memory available again.
+let person = {"name": "Karp", "type": "fish"};
+person["name"];       // => "Karp"
+```
