@@ -5,8 +5,6 @@
 [![Dependabot Enabled](https://img.shields.io/badge/Dependabot-Active-brightgreen)](https://github.com/dependabot)
 
 
-## Overview
-
 **Karp** is an interpreter for the Karp programming language, implemented in **Go (Golang)**.
 
 Karp is a small, expressive, C-like language built for learning and experimentation.  
