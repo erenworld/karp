@@ -78,7 +78,6 @@ type Hash struct {
 
 // This interface in our evaluator is to check if the given object is usable as a hash key
 // when we evaluate hash literals or index expressions for hashes.
-
 // TODOS: we could optimize the performance of the HashKey() methods by caching their return values
 type Hashtable interface {
 	HashKey() HashKey

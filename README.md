@@ -51,7 +51,7 @@ A program in Karp is a sequence of statements, such as:
 
 ## Getting started 
 
-> Prequerequist golang 1.22+
+> prerequisite golang 1.22+
 
 ### On your terminal 
 `go build -o .`
@@ -60,5 +60,4 @@ then
 
  `./karp`
 
- ### On webassembly
 
