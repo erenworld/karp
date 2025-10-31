@@ -3,7 +3,6 @@
 [![Go Version](https://img.shields.io/badge/Go-1.22%2B-blue)](https://go.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Dependabot Enabled](https://img.shields.io/badge/Dependabot-Active-brightgreen)](https://github.com/dependabot)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/erenworld/karp/go.yml?branch=main)](https://github.com/erenworld/karp/actions)
 
 
 ## Overview
