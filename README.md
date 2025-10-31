@@ -13,28 +13,6 @@
 Karp is a small, expressive, C-like language built for learning and experimentation.  
 It is inspired by the book *["Writing an Interpreter in Go"](https://interpreterbook.com/)*.
 
-
-## Pratt Parsing (Top-Down Operator Precedence)
-
-Karp uses **Pratt Parsing** — a parsing technique that associates parsing functions with tokens, depending on their position (prefix, infix, or postfix).
-
-- **Prefix operators** — appear *before* their operand:
-  ```karp
-  -5
-  !true
-
-- **Supported infix operators**
-| Operator | Description    | Example  |
-| -------- | -------------- | -------- |
-| `+`      | Addition       | `5 + 5`  |
-| `-`      | Subtraction    | `5 - 5`  |
-| `*`      | Multiplication | `5 * 5`  |
-| `/`      | Division       | `5 / 5`  |
-| `>`      | Greater than   | `5 > 5`  |
-| `<`      | Less than      | `5 < 5`  |
-| `==`     | Equality       | `5 == 5` |
-| `!=`     | Inequality     | `5 != 5` |
-
 ## Example code
 
 ```js
